@@ -19,7 +19,14 @@ from django.urls import path,include
 from services.views import ServicesApi
 from patient.views import patientApi
 from staff.views import StaffApi
+from appointment import views
 from appointment.views import AppointmentApi
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+# router.register("appointment",views.AppointmentApiViewSet,basename="appointment")
+# router.register("appointment",views.AppointmentApiViewSet,basename="appointment")
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('services/<int:pk>/',ServicesApi.as_view()),
@@ -28,7 +35,10 @@ urlpatterns = [
     path('patient/<int:pk>/',patientApi.as_view()),
     path('staff/',StaffApi.as_view()),
     path('staff/<int:pk>/',StaffApi.as_view()),
+    path('api/',include(router.urls)),
     path('appointment/',AppointmentApi.as_view()),
+
     path('appointment/<int:pk>/',AppointmentApi.as_view()),
+    
     path('login/',include('rest_framework.urls', namespace="rest_framework")),
 ]

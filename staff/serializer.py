@@ -4,4 +4,5 @@ from .models import Staff_Model
 class staffserializer(serializers.ModelSerializer):
     class Meta:
         model = Staff_Model
-        fields = "__all__"
+        fields = ['id','name']
+        # fields = "__all__"
